@@ -21,7 +21,7 @@ class ChatRequest(BaseModel):
  user_message: str = Field(min_length=1,max_length=1500)
 
 @app.get("/health")
-def health(): return {"status":"ok","model":MODEL}
+def health(): return {"status":"ok","model":MODEL,"openai_key_configured":bool(os.getenv("OPENAI_API_KEY", "").strip())}
 
 @app.get("/",response_class=HTMLResponse)
 def index():
